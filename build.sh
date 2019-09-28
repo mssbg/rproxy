@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 set -e
 
 GOOS=linux GO111MODULE=on go build -o rproxy.linux ./cmd/rproxy

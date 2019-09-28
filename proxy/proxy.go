@@ -78,6 +78,7 @@ func (p *Proxy) ServeHTTP(writer http.ResponseWriter, request *http.Request) {
 	return
 }
 
+//Replaces the host address and port in URL instances with those from a Host instance
 func CompileTargetURL(host *Host, originalUrl *url.URL) *url.URL {
 	scheme := originalUrl.Scheme
 	if scheme == "" {
