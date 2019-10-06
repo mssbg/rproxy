@@ -24,6 +24,9 @@ spec:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            - name: RPROXY_STRATEGY
+              value: {{ .Values.rproxy.strategy }}
           ports:
             - name: http
               containerPort: 8080

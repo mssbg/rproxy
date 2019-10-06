@@ -19,6 +19,6 @@ func main() {
 
 	go http.ListenAndServe(":2112", nil)
 
-	log.Printf("Starting proxy %v", proxy.P)
+	log.Printf("Starting proxy \n%v", proxy.P)
 	proxy.P.ListenAndServe()
 }
