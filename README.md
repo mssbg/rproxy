@@ -5,18 +5,27 @@ A simple reverse proxy implementation.
 It can serve multiple "services", each backed by one or more hosts/instances.
 The correct service is identified by the "Host" header in the request.
 
-Requests are relayed to a random backend host.
-If that host doesn't respond, another will be tried.
+Requests are relayed to a backend host.
+If that Host doesn't respond, another will be tried, until all Hosts have been tried.
 
-The order in which the backend hosts of particular service will be contacted is
-randomized for each request.
+Two strategies are supported for routing the requests:
+* "round-robin" the backend Hosts will be tried in the order they are listed.
+* "random" self-explanatory. also the default.   
 
- 
+There are couple of ways to set the strategy:
+* in config.yml via the proxy.strategy key
+* with the ENV var RPROXY_STRATEGY 
+
+The ENV var takes precedence. 
+
+While the executable binary and the Dockerfile default to "random" strategy,
+the example Helm chart has round-robin configured instead.
+
 ## Building
 To build this project, use Go Language v.1.12 or later
 
-The project has two executable binaries - "rproxy", the reverse proxy itself and 
-"echo" a test web service that echoes back any request sent to it. 
+The project has two executable binaries - "rproxy" - the reverse proxy itself and 
+"echo" - a test web service that echoes back any request sent to it. 
 
 To build a locally executable rproxy:
 

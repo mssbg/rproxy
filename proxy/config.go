@@ -28,5 +28,15 @@ func LoadConfig() *Proxy {
 	for _, s := range config.Proxy.Services {
 		config.Proxy.ServiceMap[s.Domain] = &s
 	}
+	config.Proxy.Strategy = GetEnvWithDefault(STRATEGY_VAR_NAME, STRATEGY_RANDOM)
 	return &config.Proxy
+}
+
+func GetEnvWithDefault(key string, defaultValue string) string {
+	value := os.Getenv(key)
+	if value == "" {
+		return defaultValue
+	} else {
+		return value
+	}
 }

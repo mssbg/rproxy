@@ -9,6 +9,8 @@ image:
   repository: "rproxy"
   pullPolicy: IfNotPresent
 
+rproxy:
+  strategy: round-robin #default is "random"
 
 service:
   type: LoadBalancer
